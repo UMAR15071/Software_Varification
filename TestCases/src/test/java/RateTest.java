@@ -3,8 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RateTest {
     @Test
@@ -317,6 +316,112 @@ public class RateTest {
             new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
         }, "An IllegalArgumentException should be thrown for an invalid reducedRate.");
     }
+    @Test
+    public void testCalculateWithReducedRatesOnly() {
+        CarParkKind kind = CarParkKind.STUDENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 7));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("5.00");
+        BigDecimal reducedRate = new BigDecimal("2.50");
 
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(1, 6); 
+        BigDecimal expectedCharge = new BigDecimal("12.50");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "Charge should be calculated based on reduced rates only.");
+    }
+    @Test
+    public void testCalculateWithNormalRatesOnly() {
+        CarParkKind kind = CarParkKind.STUDENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 7));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("5.00");
+        BigDecimal reducedRate = new BigDecimal("2.50");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(8, 12);
+        BigDecimal expectedCharge = new BigDecimal("20.00");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "Charge should be calculated based on normal rates only.");
+    }
+    @Test
+    public void testCalculateWithReducedAndNormal() {
+        CarParkKind kind = CarParkKind.STUDENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 7));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("5.00");
+        BigDecimal reducedRate = new BigDecimal("2.50");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(3, 10);
+        BigDecimal expectedCharge = new BigDecimal("35.00");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+        assertEquals(expectedCharge, actualCharge, "Charge should be calculated based on reduced and normal rates.");
+    }
+    @Test
+    public void testCalculateWithNormalRatesAndFree() {
+        CarParkKind kind = CarParkKind.STUDENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 7));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("5.00");
+        BigDecimal reducedRate = new BigDecimal("2.50");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(13, 18);
+        BigDecimal expectedCharge = new BigDecimal("20.00");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "Charge should be calculated based on normal and free rates only.");
+    }
+    @Test
+    public void testCalculateWithReducedRatesAndFree() {
+        CarParkKind kind = CarParkKind.STUDENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("5.00");
+        BigDecimal reducedRate = new BigDecimal("2.50");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(4,6);
+        BigDecimal expectedCharge = new BigDecimal("2.50");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "Charge should be calculated based on reduced and free rates only.");
+    }
+    @Test
+    public void testCalculateWithFree() {
+        CarParkKind kind = CarParkKind.STUDENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("5.00");
+        BigDecimal reducedRate = new BigDecimal("2.50");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(5,7);
+        BigDecimal expectedCharge = new BigDecimal("0.00");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "Charge should be calculated based on reduced and free rates only.");
+    }
 
 }
