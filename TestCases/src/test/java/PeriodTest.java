@@ -1,8 +1,5 @@
+import cm.Period;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.math.BigDecimal;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PeriodTest {
@@ -11,7 +8,7 @@ public class PeriodTest {
     public void testPeriodConstructorCreatesObject() {
 
         Period period = new Period(8, 12);
-        assertNotNull(period, "The Period object should not be null when valid inputs are provided.");
+        assertNotNull(period, "The org.example.Period object should not be null when valid inputs are provided.");
     }
     @Test
     public void testPeriodConstructorEndTimeIsGreaterThanStartTime(){
@@ -41,7 +38,7 @@ public class PeriodTest {
     public void testPeriodConstructorWhenStartTimeEqualsZero() {
 
         Period period = new Period(0, 12);
-        assertNotNull(period, "The Period object should not be null when valid inputs are provided.");
+        assertNotNull(period, "The org.example.Period object should not be null when valid inputs are provided.");
     }
     @Test
     public void testPeriodConstructorWhenEndTimeIsGreaterThanTwentyFour(){
@@ -55,7 +52,7 @@ public class PeriodTest {
     public void testPeriodConstructorWhereEndTimeEqualsTwentyFour() {
 
         Period period = new Period(0, 24);
-        assertNotNull(period, "The Period object should not be null when valid inputs are provided.");
+        assertNotNull(period, "The org.example.Period object should not be null when valid inputs are provided.");
     }
     @Test
     public void testPeriodDuration() {

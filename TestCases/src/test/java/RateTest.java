@@ -1,3 +1,6 @@
+import cm.CarParkKind;
+import cm.Period;
+import cm.Rate;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -18,12 +21,12 @@ public class RateTest {
         BigDecimal normalRate = new BigDecimal("5.00");
         BigDecimal reducedRate = new BigDecimal("2.50");
 
-        // Create Rate object using the constructor
+        // Create org.example.Rate object using the constructor
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
         // Check that the object is not null
-        assertNotNull(rate, "The Rate object should not be null when valid inputs are provided.");
+        assertNotNull(rate, "The org.example.Rate object should not be null when valid inputs are provided.");
     }
     @Test
     public void testConstructorWithVisitor() {
@@ -37,12 +40,12 @@ public class RateTest {
         BigDecimal normalRate = new BigDecimal("5.00");
         BigDecimal reducedRate = new BigDecimal("2.50");
 
-        // Create Rate object using the constructor
+        // Create org.example.Rate object using the constructor
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
         // Check that the object is not null
-        assertNotNull(rate, "The Rate object should not be null when valid inputs are provided.");
+        assertNotNull(rate, "The org.example.Rate object should not be null when valid inputs are provided.");
     }
     @Test
     public void testConstructorWithStaff() {
@@ -56,12 +59,12 @@ public class RateTest {
         BigDecimal normalRate = new BigDecimal("5.00");
         BigDecimal reducedRate = new BigDecimal("2.50");
 
-        // Create Rate object using the constructor
+        // Create org.example.Rate object using the constructor
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
         // Check that the object is not null
-        assertNotNull(rate, "The Rate object should not be null when valid inputs are provided.");
+        assertNotNull(rate, "The org.example.Rate object should not be null when valid inputs are provided.");
     }
     @Test
     public void testConstructorWithManager() {
@@ -75,12 +78,12 @@ public class RateTest {
         BigDecimal normalRate = new BigDecimal("5.00");
         BigDecimal reducedRate = new BigDecimal("2.50");
 
-        // Create Rate object using the constructor
+        // Create org.example.Rate object using the constructor
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
         // Check that the object is not null
-        assertNotNull(rate, "The Rate object should not be null when valid inputs are provided.");
+        assertNotNull(rate, "The org.example.Rate object should not be null when valid inputs are provided.");
     }
     @Test
     public void testConstructorWithCollectionOfPeriodsNoOverlapping() {
@@ -96,12 +99,12 @@ public class RateTest {
         BigDecimal normalRate = new BigDecimal("5.00");
         BigDecimal reducedRate = new BigDecimal("2.50");
 
-        // Create Rate object using the constructor
+        // Create org.example.Rate object using the constructor
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
         // Check that the object is not null
-        assertNotNull(rate, "The Rate object should not be null when valid inputs are provided.");
+        assertNotNull(rate, "The org.example.Rate object should not be null when valid inputs are provided.");
     }
     @Test
     public void testConstructorWithReducedRateEqualsNormalRate() {
@@ -117,12 +120,12 @@ public class RateTest {
         BigDecimal normalRate = new BigDecimal("5.00");
         BigDecimal reducedRate = new BigDecimal("5.00");
 
-        // Create Rate object using the constructor
+        // Create org.example.Rate object using the constructor
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
         // Check that the object is not null
-        assertNotNull(rate, "The Rate object should not be null when valid inputs are provided.");
+        assertNotNull(rate, "The org.example.Rate object should not be null when valid inputs are provided.");
     }
     @Test
     public void testConstructorWithReducedRateGreaterThanZero() {
@@ -138,12 +141,12 @@ public class RateTest {
         BigDecimal normalRate = new BigDecimal("5.00");
         BigDecimal reducedRate = new BigDecimal("1.00");
 
-        // Create Rate object using the constructor
+        // Create org.example.Rate object using the constructor
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
         // Check that the object is not null
-        assertNotNull(rate, "The Rate object should not be null when valid inputs are provided.");
+        assertNotNull(rate, "The org.example.Rate object should not be null when valid inputs are provided.");
     }
     @Test
     public void testConstructorWithReducedRateEqualsZero() {
