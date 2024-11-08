@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RateTest2 {
+public class UmarSyedRateTest2 {
     @Test
     public void testConstructorCreatesValidRateObject() {
         // Create valid inputs

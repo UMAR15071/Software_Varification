@@ -2,7 +2,7 @@ import cm.Period;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PeriodTest2 {
+public class UmarSyedPeriodTest2 {
 
     @Test
     public void testPeriodConstructorCreatesObject() {
