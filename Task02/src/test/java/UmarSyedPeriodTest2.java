@@ -118,7 +118,7 @@ public class UmarSyedPeriodTest2 {
     public void testPeriodsDoNotOverlap() {
 
         Period period1 = new Period(8, 12);
-        Period period2 = new Period(12, 14);
+        Period period2 = new Period(13, 15);
 
         assertFalse(period1.overlaps(period2), "The periods should not overlap.");
     }
@@ -129,6 +129,14 @@ public class UmarSyedPeriodTest2 {
         Period period2 = new Period(8, 12);
 
         assertTrue(period1.overlaps(period2), "The periods overlap.");
+    }
+    @Test
+    public void testPeriodsWhereBothArgumentsAreTrue() {
+
+        Period period1 = new Period(8, 12);
+        Period period2 = new Period(5, 7);
+
+        assertFalse(period1.overlaps(period2), "The periods should not overlap.");
     }
 }
 
