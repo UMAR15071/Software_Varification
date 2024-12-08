@@ -65,5 +65,59 @@ public class UmarSyedRateTest3 {
 
         assertEquals(expectedCharge, actualCharge, "If charge is greater than 10 there should be a 50 percent discount on anything above 10");
     }
+    @Test
+    public void testCalculateWhereManagementIsLessThanFour() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("5.00");
+        BigDecimal reducedRate = new BigDecimal("4.00");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(10, 14);
+        BigDecimal expectedCharge = new BigDecimal("5.00");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "If charge is greater than 10 there should be a 50 percent discount on anything above 10");
+    }
+    @Test
+    public void testCalculateWhereManagementIsEqualsToFour() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("5.00");
+        BigDecimal reducedRate = new BigDecimal("4.00");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(10, 14);
+        BigDecimal expectedCharge = new BigDecimal("5.00");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "If charge is greater than 10 there should be a 50 percent discount on anything above 10");
+    }
+    @Test
+    public void testCalculateWhereManagementIsGreaterThanFour() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("5.00");
+        BigDecimal reducedRate = new BigDecimal("4.00");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(10, 14);
+        BigDecimal expectedCharge = new BigDecimal("5.00");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "If charge is greater than 10 there should be a 50 percent discount on anything above 10");
+    }
 
 }
