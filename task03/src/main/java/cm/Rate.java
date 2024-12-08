@@ -1,6 +1,7 @@
 package cm;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,14 +100,18 @@ public class Rate {
 
         if (this.kind == CarParkKind.VISITOR) {
             if (total.compareTo(BigDecimal.valueOf(10)) <= 0) {
-                return BigDecimal.ZERO;
+                return BigDecimal.ZERO;  // If total is less than or equal to 10, charge 0
             } else {
-                total = total.subtract(BigDecimal.valueOf(10));
+                // Subtract the base charge of 10
+                BigDecimal amountAboveTen = total.subtract(BigDecimal.valueOf(10));
+                // Apply a 50% discount to the excess amount above 10
+                BigDecimal discount = amountAboveTen.multiply(BigDecimal.valueOf(0.5));
+                // Final charge should be 10 (base) + discounted amount above 10
+                total = amountAboveTen.subtract(discount);
             }
         }
 
-        return total;
+        // Round the result to 2 decimal places
+        return total.setScale(2, RoundingMode.HALF_UP);
     }
-
-
 }

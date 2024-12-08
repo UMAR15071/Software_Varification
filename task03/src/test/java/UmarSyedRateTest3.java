@@ -55,11 +55,11 @@ public class UmarSyedRateTest3 {
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(new Period(7, 17));
         BigDecimal normalRate = new BigDecimal("5.00");
-        BigDecimal reducedRate = new BigDecimal("2.50");
+        BigDecimal reducedRate = new BigDecimal("5.00");
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
-        Period stayPeriod = new Period(10, 13);
+        Period stayPeriod = new Period(10, 14);
         BigDecimal expectedCharge = new BigDecimal("2.50");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
