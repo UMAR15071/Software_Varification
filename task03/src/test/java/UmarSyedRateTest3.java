@@ -72,13 +72,13 @@ public class UmarSyedRateTest3 {
         reducedPeriods.add(new Period(0, 5));
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(new Period(7, 17));
-        BigDecimal normalRate = new BigDecimal("5.00");
-        BigDecimal reducedRate = new BigDecimal("4.00");
+        BigDecimal normalRate = new BigDecimal("3.00");
+        BigDecimal reducedRate = new BigDecimal("2.00");
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
         Period stayPeriod = new Period(10, 14);
-        BigDecimal expectedCharge = new BigDecimal("5.00");
+        BigDecimal expectedCharge = new BigDecimal("0");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
         assertEquals(expectedCharge, actualCharge, "If charge is greater than 10 there should be a 50 percent discount on anything above 10");
@@ -90,13 +90,13 @@ public class UmarSyedRateTest3 {
         reducedPeriods.add(new Period(0, 5));
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(new Period(7, 17));
-        BigDecimal normalRate = new BigDecimal("5.00");
-        BigDecimal reducedRate = new BigDecimal("4.00");
+        BigDecimal normalRate = new BigDecimal("4.00");
+        BigDecimal reducedRate = new BigDecimal("3.00");
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
-        Period stayPeriod = new Period(10, 14);
-        BigDecimal expectedCharge = new BigDecimal("5.00");
+        Period stayPeriod = new Period(10, 11);
+        BigDecimal expectedCharge = new BigDecimal("0");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
         assertEquals(expectedCharge, actualCharge, "If charge is greater than 10 there should be a 50 percent discount on anything above 10");
@@ -109,11 +109,11 @@ public class UmarSyedRateTest3 {
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(new Period(7, 17));
         BigDecimal normalRate = new BigDecimal("5.00");
-        BigDecimal reducedRate = new BigDecimal("4.00");
+        BigDecimal reducedRate = new BigDecimal("2.00");
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
-        Period stayPeriod = new Period(10, 14);
+        Period stayPeriod = new Period(10, 11);
         BigDecimal expectedCharge = new BigDecimal("5.00");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
