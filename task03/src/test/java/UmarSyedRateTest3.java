@@ -77,7 +77,7 @@ public class UmarSyedRateTest3 {
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
-        Period stayPeriod = new Period(10, 14);
+        Period stayPeriod = new Period(10, 11);
         BigDecimal expectedCharge = new BigDecimal("0");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
