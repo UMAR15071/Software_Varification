@@ -81,7 +81,7 @@ public class UmarSyedRateTest3 {
         BigDecimal expectedCharge = new BigDecimal("0");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
-        assertEquals(expectedCharge, actualCharge, "If charge is greater than 10 there should be a 50 percent discount on anything above 10");
+        assertEquals(expectedCharge, actualCharge, "Minimum payable amount for management is four");
     }
     @Test
     public void testCalculateWhereManagementIsEqualsToFour() {
@@ -99,7 +99,7 @@ public class UmarSyedRateTest3 {
         BigDecimal expectedCharge = new BigDecimal("0");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
-        assertEquals(expectedCharge, actualCharge, "If charge is greater than 10 there should be a 50 percent discount on anything above 10");
+        assertEquals(expectedCharge, actualCharge, "Minimum payable amount for management is four");
     }
     @Test
     public void testCalculateWhereManagementIsGreaterThanFour() {
@@ -117,7 +117,61 @@ public class UmarSyedRateTest3 {
         BigDecimal expectedCharge = new BigDecimal("5.00");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
-        assertEquals(expectedCharge, actualCharge, "If charge is greater than 10 there should be a 50 percent discount on anything above 10");
+        assertEquals(expectedCharge, actualCharge, "Minimum payable amount for management is four");
+    }
+    @Test
+    public void testCalculateWhereStudentDiscountIsLessThanFiveEuroFiftyCents() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("2.50");
+        BigDecimal reducedRate = new BigDecimal("2.00");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(10, 12);
+        BigDecimal expectedCharge = new BigDecimal("5.00");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "25 percent discount for student above 5.50");
+    }
+    @Test
+    public void testCalculateWhereStudentDiscountIsEqualToFiveEuroFiftyCents() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("2.75");
+        BigDecimal reducedRate = new BigDecimal("2.00");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(10, 12);
+        BigDecimal expectedCharge = new BigDecimal("5.50");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "25 percent discount for student above 5.50");
+    }
+    @Test
+    public void testCalculateWhereStudentDiscountIsGreaterThanFiveEuroFiftyCents() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("2.50");
+        BigDecimal reducedRate = new BigDecimal("2.00");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(10, 14);
+        BigDecimal expectedCharge = new BigDecimal("7.50");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "25 percent discount for student above 5.50");
     }
 
 }
