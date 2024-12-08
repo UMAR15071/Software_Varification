@@ -55,12 +55,12 @@ public class UmarSyedRateTest3 {
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(new Period(7, 17));
         BigDecimal normalRate = new BigDecimal("5.00");
-        BigDecimal reducedRate = new BigDecimal("5.00");
+        BigDecimal reducedRate = new BigDecimal("4.00");
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
         Period stayPeriod = new Period(10, 14);
-        BigDecimal expectedCharge = new BigDecimal("2.50");
+        BigDecimal expectedCharge = new BigDecimal("5.00");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
         assertEquals(expectedCharge, actualCharge, "If charge is greater than 10 there should be a 50 percent discount on anything above 10");
