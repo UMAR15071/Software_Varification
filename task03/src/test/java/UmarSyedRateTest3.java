@@ -1,6 +1,4 @@
-import cm.CarParkKind;
-import cm.Period;
-import cm.Rate;
+import cm.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +19,7 @@ public class UmarSyedRateTest3 {
         BigDecimal normalRate = new BigDecimal("4.00");
         BigDecimal reducedRate = new BigDecimal("2.50");
 
-        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate, new VisitorRateStrategy());
 
         Period stayPeriod = new Period(10, 12);
         BigDecimal expectedCharge = new BigDecimal("0");
@@ -39,7 +37,7 @@ public class UmarSyedRateTest3 {
         BigDecimal normalRate = new BigDecimal("5.00");
         BigDecimal reducedRate = new BigDecimal("2.50");
 
-        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate, new VisitorRateStrategy());
 
         Period stayPeriod = new Period(10, 12);
         BigDecimal expectedCharge = new BigDecimal("0");
@@ -57,7 +55,7 @@ public class UmarSyedRateTest3 {
         BigDecimal normalRate = new BigDecimal("5.00");
         BigDecimal reducedRate = new BigDecimal("4.00");
 
-        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate, new VisitorRateStrategy());
 
         Period stayPeriod = new Period(10, 14);
         BigDecimal expectedCharge = new BigDecimal("5.00");
@@ -75,7 +73,7 @@ public class UmarSyedRateTest3 {
         BigDecimal normalRate = new BigDecimal("3.00");
         BigDecimal reducedRate = new BigDecimal("2.00");
 
-        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate, new ManagementRateStrategy());
 
         Period stayPeriod = new Period(10, 11);
         BigDecimal expectedCharge = new BigDecimal("4.00");
@@ -93,7 +91,7 @@ public class UmarSyedRateTest3 {
         BigDecimal normalRate = new BigDecimal("4.00");
         BigDecimal reducedRate = new BigDecimal("3.00");
 
-        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate, new ManagementRateStrategy());
 
         Period stayPeriod = new Period(10, 11);
         BigDecimal expectedCharge = new BigDecimal("4.00");
@@ -111,7 +109,7 @@ public class UmarSyedRateTest3 {
         BigDecimal normalRate = new BigDecimal("5.00");
         BigDecimal reducedRate = new BigDecimal("2.00");
 
-        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate, new ManagementRateStrategy());
 
         Period stayPeriod = new Period(10, 11);
         BigDecimal expectedCharge = new BigDecimal("5.00");
@@ -129,7 +127,7 @@ public class UmarSyedRateTest3 {
         BigDecimal normalRate = new BigDecimal("2.50");
         BigDecimal reducedRate = new BigDecimal("2.00");
 
-        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate, new StudentRateStrategy());
 
         Period stayPeriod = new Period(10, 12);
         BigDecimal expectedCharge = new BigDecimal("5.00");
@@ -147,7 +145,7 @@ public class UmarSyedRateTest3 {
         BigDecimal normalRate = new BigDecimal("2.75");
         BigDecimal reducedRate = new BigDecimal("2.00");
 
-        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate, new StudentRateStrategy());
 
         Period stayPeriod = new Period(10, 12);
         BigDecimal expectedCharge = new BigDecimal("5.50");
@@ -165,7 +163,7 @@ public class UmarSyedRateTest3 {
         BigDecimal normalRate = new BigDecimal("2.50");
         BigDecimal reducedRate = new BigDecimal("2.00");
 
-        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate, new StudentRateStrategy());
 
         Period stayPeriod = new Period(10, 14);
         BigDecimal expectedCharge = new BigDecimal("7.50");
@@ -184,7 +182,7 @@ public class UmarSyedRateTest3 {
         BigDecimal normalRate = new BigDecimal("3.00");
         BigDecimal reducedRate = new BigDecimal("2.00");
 
-        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate, new StaffRateStrategy());
 
         Period stayPeriod = new Period(10, 11);
         BigDecimal expectedCharge = new BigDecimal("16.00");
@@ -202,7 +200,7 @@ public class UmarSyedRateTest3 {
         BigDecimal normalRate = new BigDecimal("4.00");
         BigDecimal reducedRate = new BigDecimal("3.00");
 
-        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate, new StaffRateStrategy());
 
         Period stayPeriod = new Period(10, 14);
         BigDecimal expectedCharge = new BigDecimal("16.00");
@@ -220,7 +218,7 @@ public class UmarSyedRateTest3 {
         BigDecimal normalRate = new BigDecimal("5.00");
         BigDecimal reducedRate = new BigDecimal("2.00");
 
-        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate, new StaffRateStrategy());
 
         Period stayPeriod = new Period(10, 14);
         BigDecimal expectedCharge = new BigDecimal("20.00");

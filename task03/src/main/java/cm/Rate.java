@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Rate {
+    private RateCalculationStrategy strategy;
     private CarParkKind kind;
     private BigDecimal hourlyNormalRate;
     private BigDecimal hourlyReducedRate;
     private ArrayList<Period> reduced = new ArrayList<>();
     private ArrayList<Period> normal = new ArrayList<>();
 
-    public Rate(CarParkKind kind, ArrayList<Period> reducedPeriods, ArrayList<Period> normalPeriods, BigDecimal normalRate, BigDecimal reducedRate) {
+    public Rate(CarParkKind kind, ArrayList<Period> reducedPeriods, ArrayList<Period> normalPeriods, BigDecimal normalRate, BigDecimal reducedRate, RateCalculationStrategy strategy) {
         if (reducedPeriods == null || normalPeriods == null) {
             throw new IllegalArgumentException("periods cannot be null");
         }
@@ -39,6 +40,7 @@ public class Rate {
         this.hourlyReducedRate = reducedRate;
         this.reduced = reducedPeriods;
         this.normal = normalPeriods;
+        this.strategy = strategy;
     }
 
     /**
@@ -98,30 +100,7 @@ public class Rate {
         BigDecimal total = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours)))
                 .add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
 
-        if (this.kind == CarParkKind.VISITOR) {
-            if (total.compareTo(BigDecimal.valueOf(10)) <= 0) {
-                return BigDecimal.ZERO;
-            } else {
-                BigDecimal amountAboveTen = total.subtract(BigDecimal.valueOf(10));
-                BigDecimal discount = amountAboveTen.multiply(BigDecimal.valueOf(0.5));
-                total = amountAboveTen.subtract(discount);
-            }
-        } else if (this.kind == CarParkKind.MANAGEMENT) {
-            if (total.compareTo(BigDecimal.valueOf(4)) < 0) {
-                total = BigDecimal.valueOf(4);
-            }
-        } else if (this.kind == CarParkKind.STUDENT) {
-            if (total.compareTo(BigDecimal.valueOf(5.50)) > 0) {
-                BigDecimal discount = total.multiply(BigDecimal.valueOf(0.25));
-                total = total.subtract(discount);
-            }
-        }else if (this.kind == CarParkKind.STAFF) {
-            if (total.compareTo(BigDecimal.valueOf(16.00)) < 0) {
-                total = BigDecimal.valueOf(16.00); // Minimum payable for STAFF
-            }
-        }
-        return total.setScale(2, RoundingMode.HALF_UP);
+        return strategy.calculate(total);
     }
-
 
 }
