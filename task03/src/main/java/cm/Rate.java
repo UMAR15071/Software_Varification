@@ -115,6 +115,10 @@ public class Rate {
                 BigDecimal discount = total.multiply(BigDecimal.valueOf(0.25));
                 total = total.subtract(discount);
             }
+        }else if (this.kind == CarParkKind.STAFF) {
+            if (total.compareTo(BigDecimal.valueOf(16.00)) < 0) {
+                total = BigDecimal.valueOf(16.00); // Minimum payable for STAFF
+            }
         }
         return total.setScale(2, RoundingMode.HALF_UP);
     }

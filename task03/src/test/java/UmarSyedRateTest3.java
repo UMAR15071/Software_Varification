@@ -176,7 +176,7 @@ public class UmarSyedRateTest3 {
 
     @Test
     public void testCalculateWhereStaffIsLessThanSixteen() {
-        CarParkKind kind = CarParkKind.MANAGEMENT;
+        CarParkKind kind = CarParkKind.STAFF;
         ArrayList<Period> reducedPeriods = new ArrayList<>();
         reducedPeriods.add(new Period(0, 5));
         ArrayList<Period> normalPeriods = new ArrayList<>();
@@ -190,11 +190,11 @@ public class UmarSyedRateTest3 {
         BigDecimal expectedCharge = new BigDecimal("16.00");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
-        assertEquals(expectedCharge, actualCharge, "Minimum payable amount for student is 16");
+        assertEquals(expectedCharge, actualCharge, "Minimum payable amount for staff is 16");
     }
     @Test
     public void testCalculateWhereStudentIsEqualsToSixteen() {
-        CarParkKind kind = CarParkKind.MANAGEMENT;
+        CarParkKind kind = CarParkKind.STAFF;
         ArrayList<Period> reducedPeriods = new ArrayList<>();
         reducedPeriods.add(new Period(0, 5));
         ArrayList<Period> normalPeriods = new ArrayList<>();
@@ -204,15 +204,15 @@ public class UmarSyedRateTest3 {
 
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
-        Period stayPeriod = new Period(10, 17);
+        Period stayPeriod = new Period(10, 14);
         BigDecimal expectedCharge = new BigDecimal("16.00");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
-        assertEquals(expectedCharge, actualCharge, "Minimum payable amount for student is 16");
+        assertEquals(expectedCharge, actualCharge, "Minimum payable amount for staff is 16");
     }
     @Test
     public void testCalculateWhereStudentIsGreaterThanSixteen() {
-        CarParkKind kind = CarParkKind.MANAGEMENT;
+        CarParkKind kind = CarParkKind.STAFF;
         ArrayList<Period> reducedPeriods = new ArrayList<>();
         reducedPeriods.add(new Period(0, 5));
         ArrayList<Period> normalPeriods = new ArrayList<>();
@@ -226,7 +226,7 @@ public class UmarSyedRateTest3 {
         BigDecimal expectedCharge = new BigDecimal("20.00");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
-        assertEquals(expectedCharge, actualCharge, "Minimum payable amount for student is 16");
+        assertEquals(expectedCharge, actualCharge, "Minimum payable amount for staff is 16");
     }
 
 }
