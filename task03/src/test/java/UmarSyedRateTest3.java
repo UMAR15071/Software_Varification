@@ -78,7 +78,7 @@ public class UmarSyedRateTest3 {
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
         Period stayPeriod = new Period(10, 11);
-        BigDecimal expectedCharge = new BigDecimal("0");
+        BigDecimal expectedCharge = new BigDecimal("4.00");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
         assertEquals(expectedCharge, actualCharge, "Minimum payable amount for management is four");
@@ -96,7 +96,7 @@ public class UmarSyedRateTest3 {
         Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
 
         Period stayPeriod = new Period(10, 11);
-        BigDecimal expectedCharge = new BigDecimal("0");
+        BigDecimal expectedCharge = new BigDecimal("4.00");
         BigDecimal actualCharge = rate.calculate(stayPeriod);
 
         assertEquals(expectedCharge, actualCharge, "Minimum payable amount for management is four");
@@ -121,7 +121,7 @@ public class UmarSyedRateTest3 {
     }
     @Test
     public void testCalculateWhereStudentDiscountIsLessThanFiveEuroFiftyCents() {
-        CarParkKind kind = CarParkKind.MANAGEMENT;
+        CarParkKind kind = CarParkKind.STUDENT;
         ArrayList<Period> reducedPeriods = new ArrayList<>();
         reducedPeriods.add(new Period(0, 5));
         ArrayList<Period> normalPeriods = new ArrayList<>();
@@ -139,7 +139,7 @@ public class UmarSyedRateTest3 {
     }
     @Test
     public void testCalculateWhereStudentDiscountIsEqualToFiveEuroFiftyCents() {
-        CarParkKind kind = CarParkKind.MANAGEMENT;
+        CarParkKind kind = CarParkKind.STUDENT;
         ArrayList<Period> reducedPeriods = new ArrayList<>();
         reducedPeriods.add(new Period(0, 5));
         ArrayList<Period> normalPeriods = new ArrayList<>();
@@ -157,7 +157,7 @@ public class UmarSyedRateTest3 {
     }
     @Test
     public void testCalculateWhereStudentDiscountIsGreaterThanFiveEuroFiftyCents() {
-        CarParkKind kind = CarParkKind.MANAGEMENT;
+        CarParkKind kind = CarParkKind.STUDENT;
         ArrayList<Period> reducedPeriods = new ArrayList<>();
         reducedPeriods.add(new Period(0, 5));
         ArrayList<Period> normalPeriods = new ArrayList<>();

@@ -107,13 +107,17 @@ public class Rate {
                 total = amountAboveTen.subtract(discount);
             }
         } else if (this.kind == CarParkKind.MANAGEMENT) {
-            if (total.compareTo(BigDecimal.valueOf(4)) <= 0) {
-                return BigDecimal.ZERO;
+            if (total.compareTo(BigDecimal.valueOf(4)) < 0) {
+                total = BigDecimal.valueOf(4);
+            }
+        } else if (this.kind == CarParkKind.STUDENT) {
+            if (total.compareTo(BigDecimal.valueOf(5.50)) > 0) {
+                BigDecimal discount = total.multiply(BigDecimal.valueOf(0.25));
+                total = total.subtract(discount);
             }
         }
-
-        // Round the result to 2 decimal places
         return total.setScale(2, RoundingMode.HALF_UP);
     }
+
 
 }
