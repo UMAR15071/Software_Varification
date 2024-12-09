@@ -174,4 +174,59 @@ public class UmarSyedRateTest3 {
         assertEquals(expectedCharge, actualCharge, "25 percent discount for student above 5.50");
     }
 
+    @Test
+    public void testCalculateWhereStaffIsLessThanSixteen() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("3.00");
+        BigDecimal reducedRate = new BigDecimal("2.00");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(10, 11);
+        BigDecimal expectedCharge = new BigDecimal("16.00");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "Minimum payable amount for student is 16");
+    }
+    @Test
+    public void testCalculateWhereStudentIsEqualsToSixteen() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("4.00");
+        BigDecimal reducedRate = new BigDecimal("3.00");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(10, 17);
+        BigDecimal expectedCharge = new BigDecimal("16.00");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "Minimum payable amount for student is 16");
+    }
+    @Test
+    public void testCalculateWhereStudentIsGreaterThanSixteen() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(7, 17));
+        BigDecimal normalRate = new BigDecimal("5.00");
+        BigDecimal reducedRate = new BigDecimal("2.00");
+
+        Rate rate = new Rate(kind, reducedPeriods, normalPeriods, normalRate, reducedRate);
+
+        Period stayPeriod = new Period(10, 14);
+        BigDecimal expectedCharge = new BigDecimal("20.00");
+        BigDecimal actualCharge = rate.calculate(stayPeriod);
+
+        assertEquals(expectedCharge, actualCharge, "Minimum payable amount for student is 16");
+    }
+
 }
